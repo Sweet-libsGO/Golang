@@ -9,11 +9,9 @@ import (
 )
 
 type Page struct {
-  Title string
-  Body string
-  Image string
   X string
   Temperature float64
+  Gif string
 }
 
 const(
@@ -66,19 +64,27 @@ func getWeather(zip string)(*Forecast, error){
 
 	t := f.Temp.Temp * 9/5 - 459.67
 	fmt.Println(`The temperature is`, t)
+	fmt.Println(f)
 
 	return &f, nil
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
     // x := "^^^BITCH^^^^"
-    cast,err := getWeather("10128")
+
+	fmt.Println(r.Method)
+	fmt.Println(r.URL)
+
+  	z := r.FormValue("zip")
+  	fmt.Println(z)
+	
+
+    cast,err := getWeather(z)
     if err != nil{
     	fmt.Println(err) 
     }
+
     p := &Page{
-        Body: "^^^BITCH^^^",
-        X: "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAyjAAAAJDY4NjRhMGQ3LTJlYjQtNDZjMS1hMTU4LWRlMDRhZjA5Njc3Yg.jpg",
         Temperature: cast.Temp.Temp * 9/5 - 459.67,
     }
     t, _ := template.ParseFiles("index.html")
@@ -89,8 +95,6 @@ func welcomeHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "Hello Earth\n")
 }
 
-
-
 func main() {
 
 	getWeather("10128")
@@ -98,17 +102,4 @@ func main() {
 	http.HandleFunc("/", indexHandler)
 
 	http.ListenAndServe(":8080", nil)
-
-	// fmt.Println(res.Body.weather.main)
-	// if err != nil{
-	// 	panic(err)
-	// }
-	// defer res.Body.Close()
-
-	// body,err := ioutil.ReadAll(res.Body)
-	// if err != nil{
-	// 	panic(err)
-	// }
-
-
 }

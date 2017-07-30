@@ -5,10 +5,16 @@
 	<title>Go Weather</title>
 </head>
 <body>
-	<center><img src={{.X}}>
-    <h1>{{.Body}}</h1>
+    <!-- <h1>{{.Body}}</h1> -->
+	<center>
+    <form method="POST">
+            Zip Code: <input type="text" name="zip">
+            <input type="submit">
+    </form>
 
     <p> The temperature is {{.Temperature}}</p>
+    
+	<img src={{.Gif}}>
     <a href="/Welcome">Welcome page</a> </center>
 </body>
 </html>
