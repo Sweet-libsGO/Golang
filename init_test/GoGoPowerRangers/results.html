@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Results</title>
+	<style>
+		p{
+			font-size: 75px;
+			width: 1100px;
+			text-align: justify;
+			margin: 0 auto;
+			margin-top: 10%;
+		}
+
+		.number{
+			color: cornflowerblue;
+		}
+	</style>
+</head>
+<body>
+	  
+	<p> Its is Currently<span class="number">	
+		{{.Temperature}}
+	</span class="number"> Degrees. <br/>
+	The Current Humidity is 
+	<span class="number">{{.Humidity}}</span>% <br/>
+	The temperature today could reach a high of <span class="number">{{.Max}}</span> and a low of <span class="number">{{.Min}}</span>
+	</p>
+
+
+</body>
+</html>

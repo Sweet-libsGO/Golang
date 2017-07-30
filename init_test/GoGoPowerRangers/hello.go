@@ -9,13 +9,14 @@ import (
 )
 
 type Page struct {
-  X string
-  Temperature float64
-  Gif string
+  Temperature int
+  Humidity int
+  Max int
+  Min int
+  Welcome string
 }
 
 const(
-    // zip = "10128"
     api = "13a75dbfde99048a6b499bcd9aca260b"
 )
 
@@ -30,6 +31,8 @@ type Weather struct {
 	Main        string `json:"main"`
 	Description string `json:"description"`
 }
+
+
 
 type Temperature struct {
 	Temp     float64 `json:"temp"`
@@ -46,6 +49,8 @@ type Forecast struct {
 
 
 
+
+
 func getWeather(zip string)(*Forecast, error){
 	url := fmt.Sprintf("http://api.openweathermap.org/data/2.5/weather?zip=%s&APPID=%s", zip, api)
 	res, err := http.Get(url)
@@ -55,7 +60,7 @@ func getWeather(zip string)(*Forecast, error){
 		return nil, err
 	}
 
-	
+
 	var f Forecast
 	err = json.Unmarshal(body, &f)
 	if err != nil {
@@ -70,9 +75,17 @@ func getWeather(zip string)(*Forecast, error){
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-    // x := "^^^BITCH^^^^"
 
-	fmt.Println(r.Method)
+    p := &Page{
+        Welcome: "Welcome to GoLang!",
+    }
+    t, _ := template.ParseFiles("index.html")
+    t.Execute(w,p)
+
+}
+ 
+func resultsHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r.Method)
 	fmt.Println(r.URL)
 
   	z := r.FormValue("zip")
@@ -85,14 +98,13 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
     }
 
     p := &Page{
-        Temperature: cast.Temp.Temp * 9/5 - 459.67,
+        Temperature: int(cast.Temp.Temp * 9/5 - 459.67),
+        Humidity: int(cast.Temp.Humidity),
+        Max: int(cast.Temp.TempMax * 9/5 - 459.67),
+        Min: int(cast.Temp.TempMin * 9/5 - 459.67),
     }
-    t, _ := template.ParseFiles("index.html")
+    t, _ := template.ParseFiles("results.html")
     t.Execute(w, p)
-}
- 
-func welcomeHandler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Hello Earth\n")
 }
 
 func main() {
@@ -100,6 +112,8 @@ func main() {
 	getWeather("10128")
 
 	http.HandleFunc("/", indexHandler)
+
+	http.HandleFunc("/results", resultsHandler)
 
 	http.ListenAndServe(":8080", nil)
 }
