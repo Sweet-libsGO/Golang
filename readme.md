@@ -1,7 +1,7 @@
 # Golang
 ![alt text](https://memecrunch.com/meme/BFP6K/go-go-power-rangers/image.gif?w=473&c=1 "Logo Title Text 1")
 ## Concurrency
-One of the great things about GoLang is the concept of concurrency: the ability to throw all your code -- your routes, functionality, HTML templating -- all into one file and the computer will execute all of it it simultaneously. GoLang basically allows programmers to create functions than can be executed at the same time as other functions. 
+One of the great things about GoLang is the concept of concurrency: the ability to throw all your code -- your routes, functionality, HTML templating -- all into one file and the computer will execute all of it simultaneously. GoLang basically allows programmers to create functions than can be executed at the same time as other functions. 
  
 ## GoRoutines 
 
@@ -22,10 +22,10 @@ And learn how to use it with this Go Tour: https://tour.golang.org/list
 ## Code Breakdown
 
 Although Golang is concurrent, it is still possible and most times encouraged to follow 
-the familiar MVC arcitecture when structering your environment. For our purposes, we decided
+the familiar MVC architecture when structuring your environment. For our purposes, we decided
 to keep everything tidy inside of one file.
 
-The main file in Golang, the file that is to execute everything, starts off like so
+The main file in Golang, the file that is to execute everything, starts off like so:
 
 ```
 package main
@@ -44,7 +44,7 @@ Out of the box, Go is a powerful, yet very explicit language. We can build out t
 * "encoding/json": This allows you to easily and efficiently parse JSON data.
 * "html/template": Templating (Kind of like mustaché)
 * "fmt": Printing to the console.
-* "io/ioutil": IDK
+* "io/ioutil": Provides input/output functionality
 * "net/http": Possibly the coolest... Get a server up and running with only a few lines of code.
 
 ```
@@ -154,7 +154,7 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 ```
-This is where the core functionality of the app lives. At the bottom, we are setting up the routes for our server and telling it to listen to port 8080. Back at the top, we have a function to handle the index route. This is where **"html/template"** comes in to help up bring data from the backend to the screen. Beneath, there is a **resultsHandler** that calls our API function given a ZIP by the user ("z := r.FormValue("zip"). Finally, we set a variable "p" that will follow our "page" **struct**. We set variable that we can catch on the front end using **"htm;/template"** and execute the response "t.Execute(w,p)" where "w" is the response and "p" is the data we are sending to the front end. 
+This is where the core functionality of the app lives. At the bottom, we are setting up the routes for our server and telling it to listen to port 8080. Back at the top, we have a function to handle the index route. This is where **"html/template"** comes in to help us bring data from the backend to the screen. Beneath, there is a **resultsHandler** that calls our API function given a ZIP by the user ("z := r.FormValue("zip"). Finally, we set a variable "p" that will follow our "page" **struct**. We set up a variable that we can catch on the front end using **"htm;/template"** and execute the response "t.Execute(w,p)" where "w" is the response and "p" is the data we are sending to the front end. 
 
 
 
