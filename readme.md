@@ -181,3 +181,5 @@ This is where the core functionality of the app lives. At the bottom, we are set
 </p>
 
 ```
+
+For templating, you have to import the "html/template" package and the style looks awfully similar to mustache in express, but it's not the same thing -- elements are denoted by a ".".
