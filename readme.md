@@ -37,5 +37,17 @@ import (
 	"io/ioutil"
 	"net/http"
 )
-
 ```
+
+Out of the box, Go is a powerful, yet very explicit language. We can build out the things we need... Or we can keep it simple and import some packages. "package main" is telling Go that this file is where all of our files will be executed (Convention? Maybe). Here, we are also importing some other cool things that help us out big time when making a web app. 
+
+* "encoding/json"
+--* This allows you to easily and efficiently parse JSON data.
+* "html/template"
+--* Templating (Kind of like mustaché)
+* "fmt"
+--* Printing to the console.
+* "io/ioutil"
+--* IDK
+* "net/http"
+--* Possibly the coolest... Get a server up and running with only a few lines of code.
