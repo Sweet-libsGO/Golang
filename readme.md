@@ -154,6 +154,9 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 ```
+This is where the core functionality of the app lives. At the bottom, we are setting up the routes for our server and telling it to listen to port 8080. Back at the top, we have a function to handle the index route. This is where **"html/template"** comes in to help up bring data from the backend to the screen. Beneath, there is a **resultsHandler** that calls our API function given a ZIP by the user ("z := r.FormValue("zip"). Finally, we set a variable "p" that will follow our "page" **struct**. We set variable that we can catch on the front end using **"htm;/template"** and execute the response "t.Execute(w,p)" where "w" is the response and "p" is the data we are sending to the front end. 
+
+
 
 ```
 <p> 
