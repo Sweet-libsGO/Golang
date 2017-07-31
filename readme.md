@@ -106,7 +106,8 @@ func getWeather(zip string)(*Forecast, error){
 }
 ```
 
-MORE STUFF
+**ioutil** and **json.Unmarshal** are essential in decoding our response JSON data in that API call.
+First we feed in a zipcode as an argument, and also specify what the function will return. Then, we let **ioutil** read the response and set it equal to the variable "body" and also set a variable to catch and print any errors that might arise. Next we are setting a variable "f" equal to one of the **structs** we made earlier: Forcast. Finally, setting a variable to catch the final data that we want and returning it. 
 
 ```
 func indexHandler(w http.ResponseWriter, r *http.Request) {
