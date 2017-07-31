@@ -76,4 +76,4 @@ type Forecast struct {
 }
 ```
 
-*Structs* 
+**Structs** are a collection of fields that are extremely useful for grouping data together. Not quite an object, not quite a datatype... Maybe a safe place in the middle.
