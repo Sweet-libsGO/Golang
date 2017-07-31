@@ -9,29 +9,17 @@ import (
 )
 
 type Page struct {
-  Temperature int
-  Humidity int
-  Max int
-  Min int
-  Welcome string
+  	Temperature int
+  	Humidity int
+  	Max int
+  	Min int
+  	Welcome string
 }
-
-const(
-    api = "13a75dbfde99048a6b499bcd9aca260b"
-)
-
-
-
-// https://github.com/humbhenri/openweather/blob/master/openweather.go
-
-
-
 
 type Weather struct {
 	Main        string `json:"main"`
 	Description string `json:"description"`
 }
-
 
 
 type Temperature struct {
@@ -47,10 +35,9 @@ type Forecast struct {
 	Temp     Temperature `json:"main"`
 }
 
-
-
-
-
+const(
+    api = "13a75dbfde99048a6b499bcd9aca260b"
+)
 func getWeather(zip string)(*Forecast, error){
 	url := fmt.Sprintf("http://api.openweathermap.org/data/2.5/weather?zip=%s&APPID=%s", zip, api)
 	res, err := http.Get(url)
@@ -117,3 +104,5 @@ func main() {
 
 	http.ListenAndServe(":8080", nil)
 }
+
+// https://github.com/humbhenri/openweather/blob/master/openweather.go
