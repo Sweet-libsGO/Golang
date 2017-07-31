@@ -18,3 +18,24 @@ A simple thread of execution managed by Go's runtime environment that allows mul
 ## Installation
 Just download the package manager here: https://golang.org/dl/
 And learn how to use it with this Go Tour: https://tour.golang.org/list
+
+## Code Breakdown
+
+Although Golang is concurrent, it is still possible and most times encouraged to follow 
+the familiar MVC arcitecture when structering your environment. For our purposes, we decided
+to keep everything tidy inside of one file.
+
+The main file in Golang, the file that is to execute everything, starts off like so
+
+```
+package main
+
+import (
+	"encoding/json"
+	"html/template"
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+```
